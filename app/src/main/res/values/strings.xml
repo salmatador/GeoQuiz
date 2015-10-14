@@ -12,4 +12,8 @@
     <string name="question_3">Update Question 3</string>
     <string name="question_4">Update Question 4</string>
     <string name="question_5">Update Question 5</string>
+    <string name="warning_text">Are you sure you want to do this?</string>
+    <string name="cheat_button_text">Cheat!</string>
+    <string name="show_answer_button">Show the answer.</string>
+    <string name="judgment_toast">Cheating is wrong.</string>
 </resources>
