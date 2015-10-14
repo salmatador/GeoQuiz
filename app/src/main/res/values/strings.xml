@@ -16,4 +16,5 @@
     <string name="cheat_button_text">Cheat!</string>
     <string name="show_answer_button">Show the answer.</string>
     <string name="judgment_toast">Cheating is wrong.</string>
+    <string name="subtitle_text">This is a subtitle</string>
 </resources>
