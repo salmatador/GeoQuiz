@@ -22,7 +22,7 @@ public class QuizActivity extends AppCompatActivity {
 
     private TextView mQuestionTextView;
     private int mCurrentIndex = 0;
-    private Question[] questionBank = new Question[] {
+    private Question[] mQuestionBank = new Question[] {
             new Question(R.string.question_1, true),
             new Question(R.string.question_2, true),
             new Question(R.string.question_3, true),
@@ -31,7 +31,7 @@ public class QuizActivity extends AppCompatActivity {
     };
 
     private void checkAnswer(boolean userPressedTrue){
-        boolean isAnswerTrue = questionBank[mCurrentIndex].isAnswerTrue();
+        boolean isAnswerTrue = mQuestionBank[mCurrentIndex].isAnswerTrue();
         int messageId = 0 ;
         if(userPressedTrue == isAnswerTrue){
             messageId = R.string.correct_toast;
@@ -42,7 +42,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void updateQuestion(){
-        int question = questionBank[mCurrentIndex].getQuestion();
+        int question = mQuestionBank[mCurrentIndex].getQuestion();
         mQuestionTextView.setText(question);
     }
 
@@ -87,7 +87,7 @@ public class QuizActivity extends AppCompatActivity {
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCurrentIndex = (mCurrentIndex + 1) % questionBank.length;
+                mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
                 updateQuestion();
             }
         });
@@ -96,7 +96,7 @@ public class QuizActivity extends AppCompatActivity {
         mPreviousButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCurrentIndex = (mCurrentIndex > 0) ? (mCurrentIndex - 1) : questionBank.length - 1;
+                mCurrentIndex = (mCurrentIndex > 0) ? (mCurrentIndex - 1) : mQuestionBank.length - 1;
                 updateQuestion();
             }
         });
@@ -105,7 +105,9 @@ public class QuizActivity extends AppCompatActivity {
         mCheatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                boolean answerIsTrue = mQuestionBank[mCurrentIndex].isAnswerTrue();
                 Intent intent = new Intent(QuizActivity.this, CheatActivity.class);
+                intent.putExtra(CheatActivity.EXTRA_ANSWER_IS_TRUE, answerIsTrue);
                 startActivity(intent);
             }
         });
